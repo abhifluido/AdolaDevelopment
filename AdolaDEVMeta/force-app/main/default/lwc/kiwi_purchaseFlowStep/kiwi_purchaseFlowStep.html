@@ -1,0 +1,13 @@
+<template>
+  <div class={classes} onclick={handleClick}>
+    <div class="kiwi-step-number">
+      <template if:true={done}>
+        <lightning-icon icon-name="utility:check" alternative-text="Done" title="Done" size="x-small" variant="inverse"></lightning-icon>
+      </template>
+      <template if:false={done}>
+        {step.number}
+      </template>
+    </div>
+    <p class="kiwi-step-name">{step.title}</p>
+  </div>
+</template>

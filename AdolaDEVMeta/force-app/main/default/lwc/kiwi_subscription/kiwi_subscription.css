@@ -1,0 +1,74 @@
+ul {
+  list-style: none;
+}
+
+ul li:before {
+  content: '✓';
+}
+
+
+.pointer {
+  cursor: pointer;
+}
+
+img {
+  width: 60px;
+  height: 42px;
+  margin-bottom: var(--space-sm);
+}
+.kiwi-product-card {
+  position: relative;
+  height: 100%;
+  padding: var(--space-md);
+  border: 1px solid transparent;
+}
+.kiwi-product-card,
+.kiwi-product-row {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #35363A 0%, #282829 100%);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+.kiwi-product-row .kiwi-button {
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .kiwi-product-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+.kiwi-product-col {
+  padding: 16px;
+}
+.kiwi-product-col-grow {
+  flex-grow: 1;
+}
+.kiwi-product-card.active {
+  border-color: var(--lwc-brandAccessible);
+}
+.kiwi-button {
+  margin-top: auto;
+}
+.kiwi-product-price {
+  margin: var(--space-sm) 0;
+  color: var(--main-c-secondary);
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: bold;
+}
+.kiwi-recommended {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top-right-radius: var(--space-xs);
+  border: 1px solid var(--main-c-white);
+  padding: 7px 10px;
+  font-size: 10px;
+  line-height: 11px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}

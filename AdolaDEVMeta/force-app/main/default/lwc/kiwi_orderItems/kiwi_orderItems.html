@@ -1,0 +1,20 @@
+<template>
+  <div class="kiwi-mw-sm">
+    <template if:true={address}>
+      <h2 class="mb-lg">{address} status</h2>
+    </template>
+    <template for:each={mainProducts} for:item="item">
+      <div key={item.Id} class="mb-md">
+        <c-kiwi_subscription subscription={item} variant="row" cancel="true" onselect={handleCancel}></c-kiwi_subscription>
+      </div>
+    </template>
+    <template if:true={secondaryProducts}>
+      <h2 class="mb-lg">Lisäpalvelut</h2>
+      <template for:each={secondaryProducts} for:item="item">
+        <div key={item.Id} class="mb-md">
+          <c-kiwi_subscription subscription={item} variant="row" cancel="true" onselect={handleCancel}></c-kiwi_subscription>
+        </div>
+      </template>
+    </template>
+  </div>
+</template>

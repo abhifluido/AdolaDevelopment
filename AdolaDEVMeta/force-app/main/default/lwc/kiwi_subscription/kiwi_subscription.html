@@ -1,0 +1,57 @@
+<template>
+  <template if:true={isColumn}>
+    <div class={classes} title={subscription.Product2.Name} tabindex="0">
+      <template if:true={subscription.Product2.Product_Recommended__c}>
+        <div class="kiwi-recommended">{subscription.Product2.Product_Recommended_Text__c}</div>
+      </template>
+      <template if:true={subscription.Product2.Product_Image_Link__c}>
+        <img src={subscription.Product2.Product_Image_Link__c} alt={subscription.Product2.Name} width="60" height="42" />
+      </template>
+      <h2 class="slds-text-heading_medium slds-var-m-bottom_small">{subscription.Product2.Name}</h2>
+      <lightning-formatted-rich-text value={subscription.Product2.Description}></lightning-formatted-rich-text>
+      <p class="kiwi-product-price">
+        <lightning-formatted-number value={subscription.Discounted_Price__c} format-style="currency" currency-code="EUR" currency-display-as="symbol"></lightning-formatted-number>
+        /kk/6 kk*
+      </p>
+      <div class="mb-lg">
+        <p class="text--gray">
+          6 kk jälkeen <lightning-formatted-number value={subscription.Discounted_Price__c} format-style="currency" currency-code="EUR" currency-display-as="symbol"></lightning-formatted-number>/kk
+        </p>
+      </div>
+      <button class="kiwi-button" onclick={handleChange}>{subscription.Product2.Product_CTA__c}</button>
+    </div>
+  </template>
+  <template if:true={isRow}>
+    <div class="kiwi-product-row kiwi-mw-sm" title={subscription.Product2.Name} tabindex="0">
+      <template if:true={subscription.Product2.Product_Image_Link__c}>
+        <div class="kiwi-product-col">
+          <img src={subscription.Product2.Product_Image_Link__c} alt={subscription.Product2.Name} width="60" height="42" />
+        </div>
+      </template>
+      <div class="kiwi-product-col kiwi-product-col-grow">
+        <h2 class="slds-text-heading_medium slds-var-m-bottom_small">{subscription.Product2.Name}</h2>
+        <lightning-formatted-rich-text value={subscription.Product2.Description}></lightning-formatted-rich-text>
+        <p class="kiwi-product-price">
+          <lightning-formatted-number value={subscription.UnitPrice} format-style="currency" currency-code="EUR" currency-display-as="symbol"></lightning-formatted-number>
+          <template if:true={isSubscription}>
+            /kk/6 kk*
+          </template>
+          <template if:false={isSubscription}>
+            <template if:true={isEvergreen}>/kk</template>
+          </template>
+        </p>
+        <div class="mb-lg">
+          <p class="text--gray">{subscription.Product2.Product_Extra_Description__c}</p>
+        </div>
+      </div>
+      <div class="kiwi-product-col">
+        <template if:true={cancel}>
+          <a onclick={handleChange}>Peruuta tilaus</a>
+        </template>
+        <template if:false={cancel}>
+          <button class="kiwi-button" onclick={handleChange}>Korota liittymään</button>
+        </template>
+      </div>
+    </div>
+  </template>
+</template>

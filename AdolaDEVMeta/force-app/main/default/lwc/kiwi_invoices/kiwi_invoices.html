@@ -1,0 +1,32 @@
+<!--
+ - Created by bartubazna on 5.1.2023.
+ -->
+
+<!-- Kiwi Invoices -->
+<template>
+    <template if:true={isLoading}>
+        <div class="slds-is-relative">
+            <lightning-spinner alternative-text="Loading" size="medium" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+
+    <template if:true={isRenderRemarks}>
+        <lightning-datatable
+                key-field="remarkId"
+                data={tableData}
+                columns={columns}
+                hide-checkbox-column
+                class="service-management"
+                sorted-by={sortedBy}
+                sorted-direction={sortedDirection}
+                onsort={doSorting}
+        >
+        </lightning-datatable>
+        <div class="slds-p-top_medium">
+            <b>Total remark amount: </b><lightning-formatted-number format-style="currency" currency-display-as="symbol" currency-code="EUR" value={totalRemarks}></lightning-formatted-number>
+        </div>
+    </template>
+    <template if:false={isRenderRemarks}>
+        <p class="slds-text-heading_small">No remarks to show.</p>
+    </template>
+</template>

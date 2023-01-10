@@ -1,0 +1,8 @@
+<template>
+  <div class="kiwi-steps-container">
+    <template for:each={steps} for:item="step">
+      <c-kiwi_purchase-flow-step key={step.number} current-step={currentStep} step={step}></c-kiwi_purchase-flow-step>
+    </template>
+    <div class="kiwi-steps-line"></div>
+  </div>
+</template>

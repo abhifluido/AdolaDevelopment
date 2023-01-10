@@ -1,0 +1,14 @@
+.kiwi-no-product {
+  cursor: pointer;
+  padding: 24px 16px;
+  border-radius: 4px;
+  border: 1px solid var(--main-c-gray);
+  display: flex;
+  align-items: center;
+}
+.kiwi-no-product > p {
+  margin-left: 16px;
+}
+.kiwi-no-product.active {
+  border-color: var(--main-c-primary);
+}

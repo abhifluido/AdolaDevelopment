@@ -1,0 +1,6 @@
+<template>
+    <template if:true={upgrade.data}>
+      <h2 class="mb-md">{title}</h2>
+      <c-kiwi_subscription subscription={upgrade.data} variant="row" onselect={handleSelect}></c-kiwi_subscription>
+    </template>
+</template>

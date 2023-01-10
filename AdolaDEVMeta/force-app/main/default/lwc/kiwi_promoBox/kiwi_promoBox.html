@@ -1,0 +1,41 @@
+<template>
+    <div class="kiwi-promo-box">
+      <div class="kiwi-row kiwi-row--align-center">
+        <div class="kiwi-col kiwi-col-2">
+          <template if:false={isAvailable}>
+            <p>
+              <strong>Hyviä uutisia!</strong>
+              <br/>
+              <br/>
+              Osoitteesi on kampanja-alueellamme ja valokuituliittymien ennakkomyynti käynnissä!
+              Kun tilaat NYT, saat valokuituliittymän kotiisi ilmaiseksi (norm. 2490 €). Ei piilokustannuksia: meillä maksat vain internetistä valitsemasi nopeuden mukaan. Toimi heti, ettet jää ilman!
+              <br/>
+              <br/>
+              Huom! Rakennamme valokuituverkon vain alueille, joilta saamme riittävästi ennakkotilaajia. Tilaamalla oman liittymäsi vaikutat päätökseen koko kaupunginosan rakentamisesta. Tilaus on sinulle täysin riskitön – jos emme saa riittävästi ennakkotilauksia, peruuntuu tilauksesi automaattisesti ja täysin maksutta.
+              <br/>
+              <br/>
+              Tarjous koskee omakoti- ja paritaloja.
+            </p>
+          </template>
+          <template if:true={isAvailable}>
+            <p>
+              <strong>Hyviä uutisia!</strong>
+              <br/>
+              <br/>
+              Asuinalueesi valokuituverkon rakentaminen alkaa pian, ellei ole jo käynnissä. Valokuitu on todellisuutta jo lähitulevaisuudessa, joten käsillä ovat viimeiset hetket tilata liittymä ennakkotilaajan etuhintaan.
+              <br/>
+              <br/>
+              Etuhinta on voimassa vain siihen asti, että rakennustyöt ovat edenneet kotisi kohdalle. Kun tilaat nyt, saat valokuituliittymän kotiisi ilmaiseksi (norm. 2490 €). Ei liittymis-, asennus- tai ylläpitomaksuja – meillä maksat vain internetistä valitsemasi nopeuden mukaan. Toimi heti, ettet jää ilman!
+              Tilaamalla oman liittymäsi jo tänään varmistat toimintavarman ja salamannopean nettiyhteyden kotiisi sadan vuoden ajaksi. Tilaus on sinulle täysin riskitön, sillä valokuituverkon rakentaminen kotinurkillesi on jo varmaa!
+              <br/>
+              <br/>
+              Tarjous koskee omakoti- ja paritaloja.
+            </p>
+          </template>
+        </div>
+        <div class="kiwi-col">
+          <img src={imgSrc} alt="0€ asennus">
+        </div>
+      </div>
+    </div>
+</template>

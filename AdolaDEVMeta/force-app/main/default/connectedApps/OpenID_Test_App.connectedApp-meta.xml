@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>peter.rosenberg@fluidogroup.com</contactEmail>
+    <label>OpenID Test App</label>
+    <oauthConfig>
+        <callbackUrl>https://openidconnect.herokuapp.com/callback</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFD2zspM3CBIdwMYu7iRSqm.06Y.QlPbhvib7rheWURBrmVZP_SUtqo4pI3wUXlaFkDoRP1</consumerKey>
+        <isAdminApproved>false</isAdminApproved>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isSecretRequiredForRefreshToken>true</isSecretRequiredForRefreshToken>
+        <scopes>Basic</scopes>
+        <scopes>OpenID</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+</ConnectedApp>

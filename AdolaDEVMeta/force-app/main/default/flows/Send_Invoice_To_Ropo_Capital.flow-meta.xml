@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <description>Send Invoice Data To Ropo Capital After Invoice Creation.</description>
+    <environments>Default</environments>
+    <interviewLabel>Send Invoice To Ropo Capital {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Send Invoice To Ropo Capital</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Setting up &quot;Send Invoice&quot; to true so that Invoice Data could flow to Ropo Capital</description>
+        <name>Set_Send_Invoice_to_True</name>
+        <label>Set Send Invoice to True</label>
+        <locationX>308</locationX>
+        <locationY>288</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SendInvoice__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>SendInvoice__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Posted</stringValue>
+            </value>
+        </filters>
+        <object>Invoice</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <name>Trigger_After_2_minutes</name>
+            <connector>
+                <targetReference>Set_Send_Invoice_to_True</targetReference>
+            </connector>
+            <label>Trigger After 2 minutes</label>
+            <offsetNumber>2</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

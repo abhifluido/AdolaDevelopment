@@ -1,0 +1,51 @@
+.kiwi-container {
+  /* max-width: 1150px; */
+  margin: 60px auto;
+}
+a,
+a:visited {
+  color: var(--main-c-primary);
+  text-decoration: none;
+}
+h1 {
+  font-size: 32px;
+  line-height: 37px;
+  font-weight: 400;
+}
+.kiwi-button {
+  margin-top: var(--space-md);
+}
+.kiwi-address {
+  padding: 16px;
+  border: 1px solid var(--main-c-gray);
+}
+
+label {
+  display: block;
+  font-size: var(--space-md);
+  line-height: 18px;
+  margin-bottom: var(--space-sm);
+}
+
+input {
+  width: 100%;
+  max-width: 330px;
+  display: block;
+  border: 1px solid var(--main-c-gray);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--main-c-black);
+}
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto; 
+}
+.t--secondary {
+  color: var(--main-c-secondary);
+  font-weight: 800;
+}
+.mb-0 {
+  margin-bottom: 0;
+}
+h2 {
+  font-weight: 800;
+}

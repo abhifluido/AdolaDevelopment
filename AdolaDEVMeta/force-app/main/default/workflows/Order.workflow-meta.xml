@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Order_Confirmation</fullName>
+        <description>Order Confirmation</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>BillToContactId</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>CustomerAuthorizedById</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>ShipToContactId</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <field>BillingEmailAddress</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>iyappan.ms@fluidogroup.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Myynti/Tilausvahvistus_1673269527550</template>
+    </alerts>
+</Workflow>

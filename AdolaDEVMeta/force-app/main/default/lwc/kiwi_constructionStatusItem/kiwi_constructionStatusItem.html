@@ -1,0 +1,15 @@
+<template>
+    <div class={classes}>
+      <div class="kiwi-step"></div>
+      <div>
+        <div class="kiwi-step-title">
+          {step.name}
+        </div>
+        <template if:true={step.description}>
+          <div class="kiwi-step-content">
+            <lightning-formatted-rich-text value={step.description}></lightning-formatted-rich-text>
+          </div>
+        </template>
+      </div>
+    </div>
+</template>

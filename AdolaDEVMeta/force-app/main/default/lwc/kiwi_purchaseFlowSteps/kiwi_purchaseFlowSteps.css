@@ -1,0 +1,26 @@
+.kiwi-steps-container {
+  position: relative;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.kiwi-steps-container > c-kiwi_purchase-flow-step {
+  z-index: 10;
+  background-color: var(--main-c-black);
+  padding: 0 var(--space-md);
+}
+.kiwi-steps-container > c-kiwi_purchase-flow-step:first-of-type {
+  padding-left: 0;
+}
+.kiwi-steps-container > c-kiwi_purchase-flow-step:last-of-type {
+  padding-right: 0;
+}
+.kiwi-steps-line {
+  position: absolute;
+  content: '';
+  border-bottom: 1px solid var(--main-c-gray);
+  width: 100%;
+  top: 11px;
+  left: 0;
+}

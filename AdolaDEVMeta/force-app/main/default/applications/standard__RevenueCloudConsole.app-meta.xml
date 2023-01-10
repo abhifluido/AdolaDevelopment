@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <label>Subscription Management</label>
+    <navType>Console</navType>
+    <tabs>standard-RevCloudHome</tabs>
+    <tabs>standard-RevProductWorkspace</tabs>
+    <tabs>standard-RevPaymentGatewayProvider</tabs>
+    <tabs>standard-RevTaxEngineProvider</tabs>
+    <tabs>standard-RevConfig</tabs>
+    <tabs>standard-Product2</tabs>
+    <tabs>standard-Pricebook2</tabs>
+    <tabs>Product_Relation__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>RevenueCloudConsole_UtilityBar</utilityBar>
+    <workspaceConfig>
+        <mappings>
+            <tab>Product_Relation__c</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Pricebook2</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Product2</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-RevCloudHome</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-RevConfig</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-RevPaymentGatewayProvider</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-RevProductWorkspace</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-RevTaxEngineProvider</tab>
+        </mappings>
+    </workspaceConfig>
+</CustomApplication>

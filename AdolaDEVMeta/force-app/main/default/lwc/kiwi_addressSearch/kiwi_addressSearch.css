@@ -1,0 +1,23 @@
+/**
+ * Created by bartubazna on 14.12.2022.
+ */
+
+legend {
+    color: var(--main-c-white);
+}
+
+label {
+    display: block;
+    font-size: var(--space-md);
+    line-height: 18px;
+    margin-bottom: var(--space-sm);
+}
+
+input {
+    width: 100%;
+    max-width: 330px;
+    display: block;
+    border: 1px solid var(--main-c-gray);
+    padding: var(--space-sm) var(--space-md);
+    color: var(--main-c-black);
+}

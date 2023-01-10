@@ -1,0 +1,10 @@
+.kiwi-step {
+  padding: 40px;
+  border: 1px solid var(--main-c-gray);
+  border-radius: 4px;
+}
+h2 {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 400;
+}

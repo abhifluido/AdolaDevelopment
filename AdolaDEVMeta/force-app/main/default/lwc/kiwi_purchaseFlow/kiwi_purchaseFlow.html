@@ -1,0 +1,213 @@
+<template>
+    <div class="kiwi-container">
+      <template if:true={loading}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+      </template>
+      <template if:false={loading}>
+        <template if:true={hasValidArea}>
+          <c-kiwi_purchase-flow-steps current-step={currentStep} onselect={handleStepSelect}></c-kiwi_purchase-flow-steps>
+          <template if:true={isFirstStep}>
+            <div class="slds-var-m-top_large">
+              <c-kiwi_promo-box is-available={isAvailable}></c-kiwi_promo-box>
+            </div>
+          </template>
+          <div class="slds-var-m-top_large">
+            <p class="kiwi-address">
+              Käyttöpaikan osoite: {address}
+              &nbsp;
+              <a href="https://www.valoo.fi">Vaihda</a>
+            </p>
+          </div>
+          <div class="slds-var-m-vertical_x-large">
+            <template if:true={isFirstStep}>
+              <h1 class="slds-text-heading_large mb-lg">Valitse liittymä</h1>
+              <lightning-layout multiple-rows="true" pull-to-boundary="medium" vertical-align="stretch">
+                <template for:each={priceBookEntries.data} for:item="item">
+                  <lightning-layout-item key={item.Id} size="12" small-device-size="12" medium-device-size="6"
+                    large-device-size="3" padding="around-medium">
+                    <c-kiwi_subscription subscription={item} selected-subscription={selectedSubscription}
+                      onselect={handleSubscriptionSelect}></c-kiwi_subscription>
+                  </lightning-layout-item>
+                </template>
+              </lightning-layout>
+              <p class="text--gray">Kampanjaehdot: Määräaikainen sopimus on voimassa 24 kuukautta, jonka jälkeen sopimus jatkuu toistaiseksi voimassa olevana silloisen hinnaston mukaan. Tarjous koskee vain uusia tilauksia, ei tarjousaikana irtisanottuja ja samalle henkilölle tai samaan talouteen uudelleen tilattuja palveluita. Tilauksessa sovelletaan Valoo Täyskuidun yleisiä sopimus - ja erityisehtoja ja tarjouskampanja on voimassa toistaiseksi. Sopimuksen kokonaishinta on alk. 897,60 euroa.</p>
+            </template>
+            <template if:true={isSecondStep}>
+              <h1>Valitse lisäpalvelut</h1>
+              <c-kiwi_categories form={selectedAddonsMap} onnext={handleNext} onselect={handleSelectAddon}></c-kiwi_categories>
+            </template>
+            <template if:true={isThirdStep}>
+              <h1 class="mb-md">Yhteenveto</h1>
+              <template if:true={selectedSubscriptionRecord}>
+                <p>
+                  <span>{selectedSubscriptionRecord.Product2.Name}<br/></span>
+                  <template for:each={selectedAddons} for:item="item">
+                    <span key={item.Id}>{item.Product2.Name}<br/></span>
+                  </template>
+                </p>
+                <hr/>
+                <table>
+                  <tr>
+                    <td>Kuukausimaksut</td>
+                    <td>
+                      <p class="t--secondary">
+                        <lightning-formatted-number value={totalPriceMonthly}
+                          format-style="currency" currency-code="EUR" currency-display-as="symbol"
+                        ></lightning-formatted-number>
+                        /kk/6 kk*
+                      </p>
+                      <p>
+                        <i>
+                          6 kk jälkeen <lightning-formatted-number value={totalPriceAfterDiscountMonthly} format-style="currency" currency-code="EUR" currency-display-as="symbol"></lightning-formatted-number>/kk
+                        </i>
+                      </p>
+                    </td>
+                  </tr>
+                  <template if:true={totalPriceOneTime}>
+                    <tr>
+                      <td>Kertamaksut</td>
+                      <td><p class="t--secondary">
+                        <lightning-formatted-number value={totalPriceOneTime}
+                          format-style="currency" currency-code="EUR" currency-display-as="symbol"
+                        ></lightning-formatted-number>
+                      </p></td>
+                    </tr>
+                  </template>
+                </table>
+              </template>
+              <hr/>
+              <h2 class="mb-md">Tietoa sopimuksesta</h2>
+              <p class="mb-md">
+                Kuluttaja-asiakkaana sinulla on oikeus peruuttaa etämyynnissä tekemäsi tilaus veloituksetta 14 vuorokauden sisällä tilausvahvistuksen vastaanottamisesta. Tiedotamme asiakkaitamme rakentamisen aloittamisesta ja edistymisestä sähköpostitse. Löydät ajantasaisen tiedon myös OmaValoo-portaalista.
+                <br/><br/>
+                Voit ottaa nettiyhteyden käyttöön joustavasti 12 kuukauden kuluessa asennuksen valmistumisesta. Laskutus käynnistyy, kun olet ottanut nettiliittymän käyttöösi tai kun asentamisesta on kulunut 12 kuukautta
+              </p>
+              <h2 class="mb-md">Yhteystiedot</h2>
+              <form onsubmit={startAuthSession}>
+                <lightning-layout multiple-rows="true" pull-to-boundary="medium" vertical-align="stretch">
+                  <!-- NOTE: Should come from the Signicat -->
+                  <!-- <lightning-layout-item size="12" padding="around-medium">
+                    <label for="first_name">First Name</label>
+                    <input id="first_name" maxlength="40" name="first_name" size="20" type="text" />
+                  </lightning-layout-item>
+                  <lightning-layout-item size="12" padding="around-medium">
+                    <label for="last_name">Last Name</label>
+                    <input id="last_name" maxlength="80" name="last_name" size="20" type="text" />
+                  </lightning-layout-item> -->
+                  <lightning-layout-item size="12" padding="around-medium">
+                    <label for="email">Email</label>
+                    <input id="email" maxlength="80" name="email" size="20" type="email" value={form.email}
+                      onchange={handleChangeInput}
+                    />
+                  </lightning-layout-item>
+                  <lightning-layout-item size="12" padding="around-medium">
+                    <label for="phone">Phone</label>
+                    <input id="phone" maxlength="80" name="phone" size="20" type="phone" value={form.phone}
+                      onchange={handleChangeInput}
+                    />
+                  </lightning-layout-item>
+                  <template if:true={form.isDifferentBillingAddress}>
+                    <lightning-layout-item padding="around-medium">
+                      <c-kiwi_address-search onaddresschange={handleAddressChange}></c-kiwi_address-search>
+                    </lightning-layout-item>
+                  </template>
+                  <!-- <lightning-layout-item size="12" padding="around-medium">
+                    <label for="city">City</label>
+                    <input id="city" maxlength="40" name="city" size="20" type="text" value={form.city}
+                      onchange={handleChangeInput}
+                    />
+                  </lightning-layout-item>
+                  <lightning-layout-item size="12" padding="around-medium">
+                    <label for="state">State/Province</label>
+                    <input id="state" maxlength="20" name="state" size="20" type="text" value={form.state}
+                      onchange={handleChangeInput}
+                    />
+                  </lightning-layout-item>
+                  <lightning-layout-item size="12" padding="around-medium">
+                    <label for="zip">Zip</label>
+                    <input id="zip" maxlength="20" name="zip" size="20" type="text" value={form.zip}
+                      onchange={handleChangeInput}
+                    />
+                  </lightning-layout-item> -->
+                  <lightning-layout-item size="12" padding="around-medium">
+                    <lightning-layout pull-to-boundary="small" vertical-align="center">
+                      <lightning-layout-item padding="around-small">
+                        <input id="termsAccepted" name="termsAccepted" type="checkbox"
+                          onchange={handleChangeCheckbox} checked={form.termsAccepted}
+                        />
+                      </lightning-layout-item>
+                      <lightning-layout-item padding="around-small">
+                        <label class="mb-0" for="termsAccepted">Olen lukenut ja hyväksynyt sopimusehdot</label>
+                      </lightning-layout-item>
+                    </lightning-layout>
+                  </lightning-layout-item>
+                  <template if:false={userId}>
+                    <lightning-layout-item size="12" padding="around-medium">
+                      <lightning-layout pull-to-boundary="small" vertical-align="center">
+                        <lightning-layout-item padding="around-small">
+                          <input id="isDifferentBillingAddress" name="isDifferentBillingAddress" type="checkbox"
+                                 onchange={handleChangeCheckbox} checked={form.isDifferentBillingAddress}
+                          />
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="around-small">
+                          <label class="mb-0" for="isDifferentBillingAddress">Haluan laskuni eri osoitteeseen</label>
+                        </lightning-layout-item>
+                      </lightning-layout>
+                    </lightning-layout-item>
+                  </template>
+                  <lightning-layout-item size="12" padding="around-medium">
+                    <lightning-layout pull-to-boundary="small" vertical-align="center">
+                      <lightning-layout-item padding="around-small">
+                        <input id="marketingPermission" name="marketingPermission" type="checkbox"
+                          onchange={handleChangeCheckbox} checked={form.marketingPermission}
+                        />
+                      </lightning-layout-item>
+                      <lightning-layout-item padding="around-small">
+                        <label class="mb-0" for="marketingPermission">Annan Valoo Täyskuidulle markkinointiluvan</label>
+                      </lightning-layout-item>
+                    </lightning-layout>
+                  </lightning-layout-item>
+                  <lightning-layout-item size="12" padding="around-medium">
+                    <lightning-layout pull-to-boundary="small" vertical-align="center">
+                      <lightning-layout-item padding="around-small">
+                        <input id="smsPermission" name="smsPermission" type="checkbox"
+                          onchange={handleChangeCheckbox} checked={form.smsPermission}
+                        />
+                      </lightning-layout-item>
+                      <lightning-layout-item padding="around-small">
+                        <label class="mb-0" for="smsPermission">Annan Valoo Täyskuidulle luvan lähettää minulle sms-viestejä markkinointitarkoituksessa</label>
+                      </lightning-layout-item>
+                    </lightning-layout>
+                  </lightning-layout-item>
+                </lightning-layout>
+                <template if:true={userId}>
+                  <button class="kiwi-button" type="button" onclick={handleGenerateLink}>Generate link test</button>
+                  <!-- <template if:true={generatedLink}>
+                    <p class="mv-md">
+                      <a href={generatedLink} target="_blank">Generated link to share</a>
+                    </p>
+                  </template> -->
+                </template>
+                <template if:false={userId}>
+                  <template if:true={disabled}>
+                    <button class="kiwi-button" type="submit">Vahvista tilaus tunnistautumalla</button>
+                  </template>
+                  <template if:false={disabled}>
+                    <button class="kiwi-button" type="button" disabled>Vahvista tilaus tunnistautumalla</button>
+                  </template>
+                </template>
+              </form>
+            </template>
+          </div>
+        </template>
+        <template if:false={hasValidArea}>
+          <h1>Voi harmi, alueellasi ei ole saatavuutta.</h1>
+          <p class="mb-md">Jätä meille kuitenkin aluevinkki, niin tiedät ensimmäisten joukossa, jos alamme suunnittelemaan verkkoa alueellesi.</p>
+          <button class="kiwi-button" onclick={handleNavigate}>Jätä aluevinkki</button>
+        </template>
+      </template>
+    </div>
+    <template if:true={showDocumentLeaveModal}>
+      <c-kiwi_on-leave-form onsave={handleSaveLead} onclose={handleClose}></c-kiwi_on-leave-form>
+    </template>
+</template>

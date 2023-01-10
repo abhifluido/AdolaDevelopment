@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>johanna.laitila@columbiaroad.com</contactEmail>
+    <description>Allows Azure ISP integration to retrieve customer data form Salesforce</description>
+    <label>ISP Integration App</label>
+    <oauthConfig>
+        <callbackUrl>https://localhost</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFD2zspM3CBIcerIuBiFFClvikUSCARsGkKBPicPNoyKgyfmy85ZrYjZ.yWOjVuCIn15dj8</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isSecretRequiredForRefreshToken>true</isSecretRequiredForRefreshToken>
+        <scopes>CDPProfile</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+</ConnectedApp>

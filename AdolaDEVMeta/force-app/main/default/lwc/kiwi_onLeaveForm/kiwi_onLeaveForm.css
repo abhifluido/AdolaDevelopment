@@ -1,0 +1,25 @@
+.slds-modal__header,
+.slds-modal__content {
+  background-color: var(--main-c-black);
+}
+.slds-modal__container {
+  max-width: 480px;
+}
+.slds-modal__container .kiwi-button {
+  width: 100%;
+}
+.slds-modal__container .kiwi-input {
+  margin: 24px 0;
+}
+input {
+  border: 1px solid var(--main-c-gray);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--main-c-black);
+}
+input[type="text"] {
+  display: block;
+  width: 100%;
+}
+input[type="checkbox"] {
+  margin-right: 8px;
+}

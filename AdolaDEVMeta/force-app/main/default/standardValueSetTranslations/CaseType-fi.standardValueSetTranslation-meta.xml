@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Accommodation</masterLabel>
+        <translation>Asunto-osakeyhtiö</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Corporate</masterLabel>
+        <translation>Yritys</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Muu</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Private</masterLabel>
+        <translation>Yksityinen talous</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Real Estate</masterLabel>
+        <translation>Kiinteistöosakeyhtiö</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

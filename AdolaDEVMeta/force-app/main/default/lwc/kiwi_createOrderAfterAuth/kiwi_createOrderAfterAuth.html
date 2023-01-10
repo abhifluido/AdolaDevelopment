@@ -1,0 +1,58 @@
+<!--
+ - Created by bartubazna on 25.11.2022.
+ -->
+
+<!-- Kiwi Create Order After Auth -->
+<template>
+    <div class="kiwi-container">
+        <c-kiwi_progress-bar percentage={percentage}></c-kiwi_progress-bar>
+        <div class="content-container slds-p-top_medium">
+            <template if:true={isInProgress}>
+                <div class="slds-col slds-align-middle slds-text-heading_large">
+                    Luomme tilaustasi juuri nyt...
+                </div>
+                <div class="slds-m-top_medium">Odota enintään minuutti, äläkä sulje tätä ikkunaa.</div>
+            </template>
+            <template if:true={isOrderCreated}>
+                <template if:true={isBadCreditScore}>
+                    <img src={speechBubbleIcon} alt="Info" width="57" height="55" />
+                    <span class="slds-col slds-p-left_medium slds-p-right_medium slds-align-middle slds-text-heading_large">
+                        Kiitos valokuituliittymän tilauksesta!
+                    </span>
+                    <div class="slds-p-top_medium">
+                        Tilauksesi on rekisteröity, mutta voidaksemme vahvistaa tilauksen loppuun, asiakaspalvelumme on sinuun yhteydessä mahdollisimman pian. Voit olla tarvittaessa yhteydessä asiakaspalveluumme osoitteessa <a href="https://www.valoo.fi/info" target="_blank">https://www.valoo.fi/info</a>
+                        <br /><br />
+                        Aspa on yhteydessä, jos kategoria on 1 tai 4 (liittymää ei voida myydä takuumaksullakaan). Jos kategoria on 2-3 lähetetään takuulasku postitse, jossa on laskutekstinä: "Tämä on vakuusmaksulasku laajakaistatilauksesta". Maksun suorittaminen on edellytys tilauksen etenemiselle. Voit olla tarvittaessa yhteydessä asiakaspalveluumme, yhteystiedot löydät osoitteesta <a href="https://www.valoo.fi/info" target="_blank">https://www.valoo.fi/info</a>
+                    </div>
+                    <button class="kiwi-button slds-m-top_large" onclick={handleNavigate}>Jatka OmaValoo-palveluun</button>
+                </template>
+                <template if:false={isBadCreditScore}>
+                    <img src={checkMarkIcon} alt="Checkmark" width="57" height="55" />
+                    <span class="slds-col slds-p-left_medium slds-p-right_medium slds-align-middle slds-text-heading_large">
+                        Kiitos valokuituliittymän tilauksesta!
+                    </span>
+                    <div class="slds-p-top_medium">Saat pian tilausvahvistuksen antamaasi sähköpostiosoitteeseen <lightning-formatted-email label={email} value={email}></lightning-formatted-email> <br />
+                        Olet tilannut Valoo Täyskuituliittymän kiinteistöösi. Tilaus sisältää valokuituliittymän urakoinnin kiinteistön tontille, kuitumuuntimen, asennuksen, valitsemasi laajakaistapaketin sekä mahdolliset lisäpalvelut ja -laitteet.
+
+                        <h2 class="slds-text-heading_medium slds-m-top_medium slds-m-bottom_medium">Mitä seuraavaksi?</h2>
+
+                        Voit seurata tilaustasi, tehdä muutoksia tilaukseen sekä ottaa yhteyttä asiakaspalveluun OmaValoo-palvelusta.
+                        Käyttäjätunnuksena OmaValoo-palveluun toimii antamasi sähköpostiosoite.
+                    </div>
+                    <button class="kiwi-button slds-m-top_large" onclick={handleNavigate}>Jatka OmaValoo-palveluun</button>
+                </template>
+            </template>
+            <template if:true={isCreateOrderFailed}>
+                <img src={errorIcon} alt="Error" width="57" height="55" />
+                <span class="slds-col slds-p-left_medium slds-p-right_medium slds-align-middle slds-text-heading_large">
+                    Oho, jotain meni vikaan!
+                </span>
+                <div class="slds-p-top_medium">
+                    Vika ei ole sinussa, vaan meissä. Yritämme korjata asian mahdollisimman nopeasti.<br />
+                    Odota hetki, ja kokeile uudestaan.
+                </div>
+                <button class="kiwi-button slds-m-top_large" onclick={handleNavigate}>Ota yhteyttä asiakaspalveluun</button>
+            </template>
+        </div>
+    </div>
+</template>

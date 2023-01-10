@@ -1,0 +1,12 @@
+<template>
+  <div class="kiwi-mw-sm">
+    <template if:true={address}>
+      <h2 class="mb-lg">{address} status</h2>
+    </template>
+    <div class="kiwi-step">
+      <template iterator:it={steps}>
+        <c-kiwi_construction-status-item key={it.value.name} step={it.value} last={it.last}></c-kiwi_construction-status-item>
+      </template>
+    </div>
+  </div>
+</template>

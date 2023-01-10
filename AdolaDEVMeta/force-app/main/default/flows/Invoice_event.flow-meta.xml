@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <name>InvoiceQuery</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.BaseUrl}+{!$Label.InvoiceQuery}+&quot;&apos;&quot;+{!$Record.Id}+&quot;&apos;&quot;</expression>
+    </formulas>
+    <interviewLabel>Invoice event {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Invoice event</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Invoice_PE</name>
+        <label>Invoice PE</label>
+        <locationX>1085</locationX>
+        <locationY>537</locationY>
+        <inputAssignments>
+            <field>Invoice_ID__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Query__c</field>
+            <value>
+                <elementReference>InvoiceQuery</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Invoice__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <start>
+        <locationX>970</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Invoice_PE</targetReference>
+        </connector>
+        <object>Invoice</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

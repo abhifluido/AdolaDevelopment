@@ -1,0 +1,37 @@
+.kiwi-step-center {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.kiwi-step-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 21px;
+  height: 21px;
+  color: var(--main-c-white);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  background: var(--main-c-black);
+  border-radius: 100%;
+  cursor: pointer;
+  border: 1px solid var(--main-c-gray);
+}
+
+.kiwi-step-name {
+  color: var(--main-c-gray);
+  margin-left: var(--space-sm);
+  font-size: var(--space-md);
+  line-height: 18px;
+  text-align: center;
+}
+
+.kiwi--active > .kiwi-step-number {
+  background: var(--main-c-gray);
+}
+
+.kiwi--active > .kiwi-step-number,
+.kiwi--active > .kiwi-step-name {
+  color: var(--main-c-white);
+}

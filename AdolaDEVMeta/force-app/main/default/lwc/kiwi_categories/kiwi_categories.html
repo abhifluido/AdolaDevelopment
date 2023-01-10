@@ -1,0 +1,12 @@
+<template>
+  <template if:true={categories.data}>
+    <template for:each={categories.data} for:item="category">
+      <div class="mt-lg" key={category.Id}>
+        <h2>{category.Name}</h2>
+        <p><lightning-formatted-rich-text value={category.Description__c}></lightning-formatted-rich-text></p>
+        <c-kiwi_category-products onselect={handleSelect} onsetstate={handleSetState} form={form} category-id={category.Id}></c-kiwi_category-products>
+      </div>
+    </template>
+    <button class="kiwi-button" onclick={handleNext} type="button">Jatka yhteenvetoon</button>
+  </template>
+</template>

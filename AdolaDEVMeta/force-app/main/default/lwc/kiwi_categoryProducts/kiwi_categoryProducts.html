@@ -1,0 +1,13 @@
+<template>
+    <template if:true={products.data}>
+      <lightning-layout multiple-rows="true" pull-to-boundary="medium" vertical-align="stretch">
+        <template for:each={products.data} for:item="item">
+          <lightning-layout-item key={item.Id} size="12" small-device-size="12" medium-device-size="6"
+            large-device-size="4" padding="around-medium">
+            <c-kiwi_addon item={item} selected={selected} current-category-item={currentCategoryItem} onselect={handleSelect} onselectaddon={handleSelectAddon}></c-kiwi_addon>
+          </lightning-layout-item>
+        </template>
+      </lightning-layout>
+      <!-- <c-kiwi_addon-none selected={selected} onselect={handleSelectNone}></c-kiwi_addon-none> -->
+    </template>
+</template>

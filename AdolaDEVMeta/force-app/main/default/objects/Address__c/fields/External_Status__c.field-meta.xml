@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_Status__c</fullName>
+    <description>Just to examine the simplified version of the status.</description>
+    <externalId>false</externalId>
+    <formula>CASE( Construction_Status__c ,
+  &quot;Rakentaminen on käynnissä&quot;, &quot;Rakentaminen on käynnissä&quot;,
+  &quot;Something else 1&quot;, &quot;Rakentaminen on käynnissä&quot;,
+  &quot;Talonpääty asennettu&quot;, &quot;Talonpääty asennettu&quot;,
+  &quot;Something else 2&quot;, &quot;Talonpääty asennettu&quot;,
+  &quot;Liittymä valmis aktivoitavaksi&quot;, &quot;Liittymä valmis aktivoitavaksi&quot;,
+  &quot;Something else 3&quot;, &quot;Talonpääty asennettu&quot;,
+  &quot;Other&quot;, &quot;Joku muu, Kanada&quot;,
+&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Just to examine the simplified version of the status.</inlineHelpText>
+    <label>External Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

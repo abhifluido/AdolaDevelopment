@@ -1,0 +1,53 @@
+ul {
+  list-style: none;
+}
+
+ul li:before {
+  content: '✓';
+}
+
+.active {
+  border-color: var(--lwc-brandAccessible);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.kiwi-img {
+  /* width: 60px;
+  height: 42px;
+  margin-bottom: var(--space-sm); */
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+}
+.kiwi-product-card-container {
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: linear-gradient(180deg, #35363A 0%, #282829 100%);
+}
+.kiwi-product-card {
+  position: relative;
+  display: flex;
+  padding: var(--space-md);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0 0 4px 4px;
+  align-items: flex-start;
+}
+.kiwi-product-card-container.active {
+  border-color: var(--main-c-primary);
+}
+.kiwi-product-price {
+  margin: var(--space-sm) 0;
+  color: var(--main-c-secondary);
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: bold;
+}
+.kiwi-checkbox {
+  margin-right: 16px;
+  margin-top: 6px;
+  width: 16px;
+  height: 16px;
+}

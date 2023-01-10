@@ -1,0 +1,23 @@
+<!--
+ - Created by bartubazna on 14.12.2022.
+ -->
+
+<!-- Kiwi Community Address Search -->
+<template>
+    <div class="kiwi-container address-search">
+        <div class="content-container slds-p-top_medium">
+            <div class="slds-p-horizontal_medium">
+                <c-kiwi_address-search onaddresschange={handleChange}></c-kiwi_address-search>
+                <div class="kiwi-address-search">
+                    <lightning-combobox label="Sales Direction"
+                                        value={salesDirection}
+                                        options={picklistVals}
+                                        onchange={handleDirectionChange}></lightning-combobox>
+                </div>
+                <div class="slds-m-top_large">
+                    <button class="kiwi-button" onclick={handleNavigate}>Search Address & Select Products</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

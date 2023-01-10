@@ -1,0 +1,24 @@
+<template>
+  <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+    <div class="slds-modal__container">
+      <div class="slds-modal__close">
+        <lightning-button-icon icon-name="utility:close"  variant="bare-inverse" alternative-text="Close" title="Close"
+          onclick={handleClose} size="large"
+        ></lightning-button-icon>
+      </div>
+      <div class="slds-modal__header">
+        <h1 class="slds-modal__title slds-hyphenate">S-kanavapaketin kanavat</h1>
+      </div>
+      <div class="slds-modal__content slds-p-around_medium">
+        <template for:each={channels} for:item="item">
+          <p key={item}>
+            <img src={imgSrc} width="33" height="13" />
+            &nbsp;&nbsp;
+            {item}
+          </p>
+        </template>
+      </div>
+    </div>
+  </section>
+  <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

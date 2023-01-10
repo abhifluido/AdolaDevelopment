@@ -1,0 +1,23 @@
+<template>
+    <div class="kiwi-container">
+      <lightning-layout horizontal-align="spread" vertical-align="center">
+        <lightning-layout-item>
+          <lightning-layout vertical-align="center">
+            <lightning-layout-item>
+              <a data-name="Home" onclick={handleNavigate}>
+                <img src={logoSrc} alt="Valoo Logo" width="91" height="30" />
+              </a>
+            </lightning-layout-item>
+            <template if:true={isLoggedIn}>
+              <lightning-layout-item>
+                <span class="ml-md">OmaValoo</span>
+              </lightning-layout-item>
+            </template>
+          </lightning-layout>
+        </lightning-layout-item>
+        <template if:true={showNav}>
+          <a data-name="Tilaukseni__c" onclick={handleNavigate}>Palveluni</a>
+        </template>
+      </lightning-layout>
+    </div>
+</template>

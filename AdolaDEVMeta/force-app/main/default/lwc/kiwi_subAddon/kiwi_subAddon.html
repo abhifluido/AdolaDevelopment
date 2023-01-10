@@ -1,0 +1,20 @@
+<template>
+  <div onclick={handleSelect} class={classes}>
+    <div class="kiwi-product-card" title={item.Product2.Name}>
+      <img src={imgSrc} width="16" height="16" class="kiwi-checkbox" />
+      <div>
+        <h2 class="slds-text-heading_medium slds-var-m-bottom_small">{item.Product2.Name}</h2>
+        <lightning-formatted-rich-text value={item.Product2.Description}></lightning-formatted-rich-text>
+        <p class="kiwi-product-price">
+          <lightning-formatted-number value={item.UnitPrice} format-style="currency" currency-code="EUR" currency-display-as="symbol"></lightning-formatted-number>
+          <template if:false={isOneTime}>
+            /kk
+          </template>
+        </p>
+        <p class="text--gray">
+          {item.Product2.Product_Extra_Description__c}
+        </p>
+      </div>
+    </div>
+  </div>
+</template>

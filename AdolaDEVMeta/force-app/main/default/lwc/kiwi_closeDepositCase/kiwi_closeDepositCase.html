@@ -1,0 +1,24 @@
+<!--
+ - Created by bartubazna on 27.12.2022.
+ -->
+
+<!-- Kiwi Close Deposit Case -->
+<template>
+    <lightning-quick-action-panel title="Close Case & Remove Security Deposit Flag">
+        You are closing this case. If you don't want to remove "Requires Security Deposit" flag from the order, please uncheck the checkbox below. <br>
+
+        <div style="padding-top: 1rem;">
+            <lightning-input type="checkbox" label='Remove "Requires security deposit" flag from order' checked={isRemoveFlag} onchange={handleCheckbox}> </lightning-input>
+        </div>
+
+        <template if:true={isLoading}>
+            <div class="slds-is-relative">
+                <lightning-spinner alternative-text="Loading" size="medium" variant="brand"></lightning-spinner>
+            </div>
+        </template>
+
+        <div slot="footer">
+            <lightning-button disabled={isLoading} variant="brand" label="Close case" onclick={updateRecords} ></lightning-button>
+        </div>
+    </lightning-quick-action-panel>
+</template>

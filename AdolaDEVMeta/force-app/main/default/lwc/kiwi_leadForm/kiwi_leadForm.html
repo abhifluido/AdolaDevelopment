@@ -1,0 +1,45 @@
+<template>
+  <div class="kiwi-container">
+    <h1 class="mb-sm">{title}</h1>
+    <p class="mb-md"><lightning-formatted-rich-text value={content}></lightning-formatted-rich-text></p>
+    <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+      <input type=hidden name="oid" value="00D0D000000Cu3z" />
+      <input type=hidden name="retURL" value="https://www.valoo.fi/" />
+      <template if:true={debugEmail}>
+        <input type="hidden" name="debug" value="1" />
+        <input type="hidden" name="debugEmail" value={debugEmail} />
+      </template>
+      <lightning-layout multiple-rows="true" pull-to-boundary="medium" vertical-align="stretch">
+        <lightning-layout-item size="6" padding="around-medium">
+          <label for="first_name">First Name</label>
+          <input id="first_name" maxlength="40" name="first_name" size="20" type="text" />
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-medium">
+          <label for="last_name">Last Name</label>
+          <input id="last_name" maxlength="80" name="last_name" size="20" type="text" />
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-medium">
+          <label for="email">Email</label>
+          <input  id="email" maxlength="80" name="email" size="20" type="text" />
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-medium">
+          <label for="city">City</label>
+          <input id="city" maxlength="40" name="city" size="20" type="text" />
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-medium">
+          <label for="state">State/Province</label>
+          <input id="state" maxlength="20" name="state" size="20" type="text" />
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-medium">
+          <label for="zip">Zip</label>
+          <input id="zip" maxlength="20" name="zip" size="20" type="text" />
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-medium">
+          <label for="emailOptOut">Email Opt Out</label>
+          <input id="emailOptOut" name="emailOptOut" type="checkbox" value="1" />
+        </lightning-layout-item>
+      </lightning-layout>
+      <button class="kiwi-button" type="submit">Lähetä</button>
+    </form>
+  </div>
+</template>

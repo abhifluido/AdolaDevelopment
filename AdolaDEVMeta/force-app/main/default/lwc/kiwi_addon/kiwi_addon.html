@@ -1,0 +1,65 @@
+<template>
+  <div onclick={handleSelect} class={classes}>
+    <template if:true={item.Product2.Product_Recommended__c}>
+      <div class="kiwi-recommended">{item.Product2.Product_Recommended_Text__c}</div>
+    </template>
+    <template if:true={item.Product2.Product_Image_Link__c}>
+      <img src={item.Product2.Product_Image_Link__c} alt={item.Product2.Name} class="kiwi-img" />
+    </template>
+    <div class="kiwi-product-card" title={item.Product2.Name}>
+      <div>
+        <h2 class="slds-text-heading_medium slds-var-m-bottom_small">{item.Product2.Name}</h2>
+        <p class="kiwi-product-price">
+          <lightning-formatted-number value={item.UnitPrice} format-style="currency" currency-code="EUR" currency-display-as="symbol"></lightning-formatted-number>
+          <template if:false={isOneTime}>
+            /kk
+          </template>
+          <template if:true={item.Marketing_Price__c}>
+            <span class="kiwi-marketing-price">
+              <lightning-formatted-number value={item.Marketing_Price__c} format-style="currency" currency-code="EUR" currency-display-as="symbol"></lightning-formatted-number>
+              <template if:false={isOneTime}>
+                /kk
+              </template>
+            </span>
+          </template>
+        </p>
+        <div class="mb-sm">
+          <lightning-formatted-rich-text value={item.Product2.Description}></lightning-formatted-rich-text>
+        </div>
+        <template if:true={hasChannels}>
+          <div class="mb-sm">
+            <a href="javascript:void(0)" onclick={handleOpen}>Näytä kanavat</a>
+          </div>
+        </template>
+        <div class="mb-sm">
+          <p class="text--gray">
+            {item.Product2.Product_Extra_Description__c}
+          </p>
+        </div>
+        <div>
+          <template if:true={checked}>
+            <span class="kiwi-button">✓ Lisätty tilauksen</span>
+          </template>
+          <template if:false={checked}>
+            <span class="kiwi-button s kiwi-button--secondary">Lisää tilauksen</span>
+          </template>
+        </div>
+        <template if:true={checked}>
+          <template if:true={relatedAddons.data}>
+            <div class="mt-lg">
+              <p>Lisävalinnat</p>
+              <template for:each={relatedAddons.data} for:item="item">
+                <div key={item.Product2.Id} class="mt-md">
+                  <c-kiwi_sub-addon item={item} selected={formItemAddons} onselect={handleSelectSubAddon}></c-kiwi_sub-addon>
+                </div>
+              </template>
+            </div>
+          </template>
+        </template>
+      </div>
+    </div>
+  </div>
+  <template if:true={showChannels}>
+    <c-kiwi_channels-modal onclose={handleClose}></c-kiwi_channels-modal>
+  </template>
+</template>

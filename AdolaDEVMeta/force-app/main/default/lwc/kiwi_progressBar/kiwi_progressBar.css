@@ -1,0 +1,19 @@
+/**
+ * Created by bartubazna on 21.11.2022.
+ */
+
+.progress-bar {
+    background: #35363A;
+    border-radius: 50px;
+    width: 100%;
+    display: block;
+    height: 2em;
+}
+
+.progress-gradient {
+    background: linear-gradient(267.1deg, #0073FF -4.12%, #29FF75 113.5%);
+    border-radius: 50px;
+    height: 2em;
+    width: 0%;
+    transition: width 0.5s;
+}

@@ -1,0 +1,83 @@
+<!--
+ - Created by bartubazna on 2.11.2022.
+ -->
+
+<!-- Kiwi Auth Result -->
+<template>
+    <c-kiwi_header></c-kiwi_header>
+    <div class="kiwi-container">
+        <c-kiwi_progress-bar percentage={percentage}></c-kiwi_progress-bar>
+        <div class="content-container slds-p-top_medium">
+            <template if:false={isProcessFinished}>
+                <template if:true={isIdentificationAborted}>
+                    <img src={errorIcon} alt="Error" width="57" height="55" />
+                    <span class="slds-col slds-p-left_medium slds-p-right_medium slds-align-middle slds-text-heading_large">
+                        Peruit tunnistautumisen
+                    </span>
+                    <div class="slds-p-top_medium">
+                        Olemme tallentaneet valintasi, joten halutessasi voit palata alla olevasta napista takaisin yhteenvetoon ja kokeilla uudestaan.
+                    </div>
+                    <button class="kiwi-button slds-m-top_large" data-type="back" onclick={handleNavigate}>Kokeile uudestaan</button>
+                </template>
+                <template if:true={isIdentificationError}>
+                    <img src={errorIcon} alt="Error" width="57" height="55" />
+                    <span class="slds-col slds-p-left_medium slds-p-right_medium slds-align-middle slds-text-heading_large">
+                        Tunnistautuminen epäonnistui!
+                    </span>
+                    <div class="slds-p-top_medium">
+                        Ongelman jatkuessa, ota yhteyttä tunnistautumisen tarjoajaan, esimerkiksi pankkiisi tai teleoperaattoriisi, mikäli käytit mobiilivarmennetta.<br />
+                        Odota hetki, ja kokeile tunnistautua eri tavalla.
+                    </div>
+                    <button class="kiwi-button slds-m-top_large" data-type="back" onclick={handleNavigate}>Kokeile uudestaan</button>
+                </template>
+                <template if:true={isIdentificationSuccess}>
+                    <div class="slds-col slds-align-middle slds-text-heading_large">
+                        Luodaan OmaValoo-tiliä…
+                    </div>
+                    <div class="slds-m-top_medium">
+                        Käyttäjätilin luominen kestää alle minuutin. Älä sulje tätä ikkunaa.
+                    </div>
+                    <div style="height:6rem;position:relative">
+                        <div role="status" class="slds-spinner slds-spinner_medium">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+            <template if:true={isProcessFinished}>
+                <template if:true={isUserCreated}>
+                    <img src={checkMarkIcon} alt="Checkmark" width="57" height="55" />
+                    <span class="slds-col slds-p-left_medium slds-p-right_medium slds-align-middle slds-text-heading_large">
+                        Tilisi on luotu!
+                    </span>
+                    <div class="slds-p-top_medium">
+                        Odota hetki, sinut ohjataan seuraavaan vaiheeseen.
+                    </div>
+                </template>
+                <template if:true={isUserCreateFailed}>
+                    <img src={errorIcon} alt="Error" width="57" height="55" />
+                    <span class="slds-col slds-p-left_medium slds-p-right_medium slds-align-middle slds-text-heading_large">
+                        Oho, jotain meni vikaan!
+                    </span>
+                    <div class="slds-p-top_medium">
+                        Vika ei ole sinussa, vaan meissä. Yritämme korjata asian mahdollisimman nopeasti.<br />
+                        Odota hetki, ja kokeile uudestaan.
+                    </div>
+                    <button class="kiwi-button slds-m-top_large" data-type="back" onclick={handleNavigate}>Kokeile uudestaan</button>
+                </template>
+                <template if:true={isUserExists}>
+                    <img src={speechBubble} alt="Info" width="57" height="55" />
+                    <span class="slds-col slds-p-left_medium slds-p-right_medium slds-align-middle slds-text-heading_large">
+                        Tervetuloa takaisin!
+                    </span>
+                    <div class="slds-p-top_medium">
+                        Näyttää siltä, että sinulla on jo OmaValoo-tili.
+                    </div>
+                    <button class="kiwi-button slds-m-top_large" data-type="login" onclick={handleNavigate}>Kirjaudu OmaValoo-palveluun</button>
+                </template>
+            </template>
+        </div>
+    </div>
+</template>

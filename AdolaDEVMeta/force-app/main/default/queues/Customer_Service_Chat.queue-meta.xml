@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Customer Service - Chat</name>
+    <queueMembers>
+        <users>
+            <user>tommi.seppala@fluidogroup.com.adoladev01.testuser</user>
+            <user>juuso.haapanen@columbiaroad.com</user>
+            <user>tommi.seppala@fluidogroup.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>Customer_Service_Chat</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>LiveChatTranscript</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,33 @@
+<template>
+  <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+    <div class="slds-modal__container">
+      <div class="slds-modal__close">
+        <lightning-button-icon icon-name="utility:close"  variant="bare-inverse" alternative-text="Close" title="Close"
+          onclick={handleClose} size="large"
+        ></lightning-button-icon>
+      </div>
+      <div class="slds-modal__header">
+        <h1 class="slds-modal__title slds-hyphenate">Pohditko vielä?</h1>
+      </div>
+      <div class="slds-modal__content slds-p-around_medium">
+        <p class="mb-md">Jätä yhteystietosi, niin pääset näppärästi linkin kautta takaisin tähän kohtaan.</p>
+        <form onsubmit={handleSubmit}>
+          <div class="mb-md">
+            <label for="email">Sähköposti</label>
+            <input id="email" maxlength="80" name="email" size="20" type="text" placeholder="Kirjoita sähköposti"
+              onchange={handleChangeInput} value={form.email}
+            />
+          </div>
+          <div class="mb-md">
+            <input id="emailAccepted" name="emailAccepted" type="checkbox" value="1"
+              onchange={handleChangeCheckbox} checked={form.emailAccepted}
+            />
+            <label for="emailAccepted">Annan Valoo Täyskuitu -yrityksille markkinointiluvan.</label>
+          </div>
+          <button type="submit" class="kiwi-button">Lähetä linkki sähköpostiini</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>
